@@ -79,7 +79,7 @@ CALL GRANT_ACTIVATED_ROLE('sap.hana.xs.wdisp.admin::WebDispatcherAdmin','XS_ADMI
 ``` 
 
 #### Video Tutorial ####
-[![2. Certify Public URL (XS)](https://img.youtube.com/vi/https://youtu.be/SAoG4T1NFbQ/0.jpg)](https://youtu.be/SAoG4T1NFbQ "[2019.05] SAP Cloud Analytics Live Connections: 2. Certify Public URL (XS) - SAP Digital Enablement")
+[![2. Certify Public URL (XS)](https://img.youtube.com/vi/SAoG4T1NFbQ/0.jpg)](https://youtu.be/SAoG4T1NFbQ "SAP Cloud Analytics Live Connections: 2. Certify Public URL (XS) - SAP Digital Enablement")
 
 #### Documentation ####
 * [Configure HTTPS (SSL) for Client Application Access](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/2.0.01/en-US/d33b259c567441aa97e99228dc0f2088.html) - SAP HANA Administration Guide
@@ -133,6 +133,10 @@ To connect to tool we need the RuntimeConfAdministrator role. Any user could be 
 ```	
 CALL GRANT_ACTIVATED_ROLE('sap.hana.xs.admin::RuntimeConfAdministrator','XS_ADMIN');
 ``` 
+
+Edit the CORS settings for the following package:
+
+    sap.bc.ina.service.v2 
 
 Add the following to Allowed Headers:
 
