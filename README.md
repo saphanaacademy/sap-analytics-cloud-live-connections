@@ -11,7 +11,7 @@ We can connect SAP Analytics Cloud to a multitude of data sources.
 ![SAC_DataConnections](https://www.sapanalytics.cloud/wp-content/uploads/2018/12/SAC_DataConnections-1.2.png)
 
 In this series, we cover a live connection to SAP HANA using the Information Access (InA) Service. This service is exposed by SAP HANA XS (classic) and requires the following configuration before the connection can be established. 
-1. Configure a public URL for the XS server. By deafult, XS is only accessible internally. 
+1. Configure a public URL for the XS server. By default, XS is only accessible internally. 
 2. Certify the public URL. By default, the XS server (Web Dispatcher) uses only self-signed certificates. 
 3. Grant the INA_ROLE to a user. By default, no user has this role granted. 
 4. Enable and confgiure external access to the InA service. By default, CORS (Cross Origin Resource Sharing) is disabled. 
@@ -35,11 +35,11 @@ password = *******
 ## SAP HANA Live Connection Prerequisites ##
 
 ### 1. Configure Public URL (XS) ### 
-To access information views in a HANA tenant database from SAP Analytics Cloud, the HANA XS server needs to listen to a public URL. It is not required to register the public URL with a public DNS. Only the computer accessing SAC needs to be able to resolve the address. This meanns that even the local hosts file can be used for resolution. More common will be DNS registration inside the corporate network.  
+To access information views in a HANA tenant database from SAP Analytics Cloud, the HANA XS server needs to listen to a public URL. It is not required to register the public URL with a public DNS. Only the computer accessing SAC needs to be able to resolve the address. This means that even the local hosts file can be used for resolution. More common will be DNS registration inside the corporate network.  
 ```
 ## execute as INI ADMIN on SYSTEMDB
 ALTER SYSTEM ALTER CONFIGURATION ('xsengine.ini', 'database', 'HXE') SET ('public_urls', 'http_url') = 'http://myhost.lab.cloud.sap:8090' WITH RECONFIGURE;
-ALTER SYSTEM ALTER CONFIGURATION ('xsengine.ini', 'database', 'HXE') SET ('public_urls', 'https_url') = 'http://myhost.lab.cloud.sap:4390' WITH RECONFIGURE;
+ALTER SYSTEM ALTER CONFIGURATION ('xsengine.ini', 'database', 'HXE') SET ('public_urls', 'https_url') = 'https://myhost.lab.cloud.sap:4390' WITH RECONFIGURE;
 ```
 For testing, you can add the FQDN of the host to your local hosts file (Linux, macOS /etc/hosts; Windows %WINDIR%\system32\drivers\etc)
 ```
