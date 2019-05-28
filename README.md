@@ -102,7 +102,7 @@ Use the platform lifecycle management tool (hdblcm) to install it. The web inter
 * [2441461 - InformationAccess Service GetServerInfo is not available. Install EPM error appears in SAP Analytics Cloud (BOC)](https://launchpad.support.sap.com/#/notes/2441461)
 
 ### 3b. GRANT INA_ROLE (XS) ### 
-To connect to the InA service we need the INA_ROLE role. Any user could be used but a least-privileged user approach is generally recommended. In the code example below we create the INA_USER user and grant the user the INA_ROLE role. 
+To connect to the InA service we need the INA_USER role. Any user could be used but a least-privileged user approach is generally recommended. In the code example below we create the INA_USER user and grant the user the INA_USER role. 
 ```	
 CREATE USER ina_user PASSWORD ****;
 CALL GRANT_ACTIVATED_ROLE('sap.bc.ina.service.v2.userRole::INA_USER','INA_USER');
@@ -121,6 +121,11 @@ Verify connectivity with GetResponse:
     https://myhost.lab.cloud.sap:4390/sap/bc/ina/service/v2/GetResponse?Request={%22Metadata%22:{%22Expand%22:[%22Cubes%22]}} 
 
 #### Error ####
+If the user does not have the INA_ROLECreating a Live Connection to SAP HANA 
+
+    You are not authorized to query the remote system. Please ask your administrator to grant you the InA role. 
+
+
 The GetServerInfo URL returns the following error when the component is not installed. 
 
     {"Messages":[{"Number":42001,"Type":2,"Text":"InformationAccess Service GetServerInfo is not available. Install EPM."}]}
@@ -170,6 +175,11 @@ Select the following Allowed Methods:
 #### Documentation ####
 * [Live Data Connection to SAP HANA Using a Direct Connection with Password Authentication](https://help.sap.com/doc/00f68c2e08b941f081002fd3691d86a7/2019.7/en-US/58c890e1c89d41e69b2cec31bac2d95f.html) - SAP Analytics Cloud Help
 * [Application Runtime Configuration Details](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/2.0.04/en-US/0ff6baf4a2a24707b3465face9fa8cf4.html) - SAP HANA Administration Guide
+
+#### Error ####
+If CORS has not been configured for the InA service, the following error is returned when creating the Live Connection
+
+    Failed to connect to HANA system. Possible causes: CORS Settings; incorrect credentials. More information can be found on the troubleshooting page.   
 
 ### 5. HTTP Server Session Timeout (XS) ###
 Default value for the HTTP Server (XS Engine) session timeout parameter is 900 seconds. SAC documentation recommends 12 hours. 
