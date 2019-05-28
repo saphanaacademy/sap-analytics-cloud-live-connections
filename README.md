@@ -55,7 +55,7 @@ For testing, you can add the FQDN of the host to your local hosts file (Linux, m
 * [Maintain Standard HTTP Port Numbers with SAP HANA XS](https://help.sap.com/viewer/6b94445c94ae495c83a19646e7c3fd56/latest/en-US/116cc3f3f3f645159ee138c3ba50a48b.html) - SAP HANA Administration Guide for SAP HANA Platform
 
 ### 2. Certify Public URL (XS) ### 
-The public URL needs to signed by a certificate authority (CA). Digital web server certificates are provided by companies like DigiCert and Symantec (random list). For corporate environments, this service is typically by the IT department (SAP colleagues, visit [Global PKI Certificate Management](https://sapcerts.wdf.global.corp.sap/WebEnrollment.aspx)).
+The public URL needs to be signed by a certificate authority (CA). Digital web server certificates are provided by companies like DigiCert and Symantec (random list). For corporate environments, this service is typically by the IT department (SAP colleagues, visit [Global PKI Certificate Management](https://sapcerts.wdf.global.corp.sap/WebEnrollment.aspx)).
 
 The public/private keys of the PSE (Personal Security Environment) of the HTTP Server (Web Dispatcher) are signed with host name only (CN=sid-hxe in case of HANA express). Recreate the SAPSSLS PSE with proper identification and with the CN corresponding to the public URL, e.g. 
 ```
@@ -121,7 +121,7 @@ Verify connectivity with GetResponse:
     https://myhost.lab.cloud.sap:4390/sap/bc/ina/service/v2/GetResponse?Request={%22Metadata%22:{%22Expand%22:[%22Cubes%22]}} 
 
 #### Error ####
-If the user does not have the INA_ROLECreating a Live Connection to SAP HANA 
+If the user does not have the INA_ROLE the following error is returned by SAP Analytics Cloud when creating the Live Connection:
 
     You are not authorized to query the remote system. Please ask your administrator to grant you the InA role. 
 
@@ -167,7 +167,7 @@ Add the following to Exposed Headers:
 
 Select the following Allowed Methods: 
 
-    GET, HEAD, POST, OPTIONS
+    GET, HEAD, POST, OPTIONS, PUT
 
 #### Video Tutorial ####
 [![4. CORS Configuration (XS)](https://img.youtube.com/vi/znIgIPZjAxI/0.jpg)](https://youtu.be/znIgIPZjAxI "[2019.05] SAP Cloud Analytics Live Connections: 4. CORS Configuration (XS) - SAP Digital Enablement")
