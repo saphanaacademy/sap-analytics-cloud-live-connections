@@ -95,11 +95,6 @@ Use the platform lifecycle management tool (hdblcm) to install it. The web inter
 ```	
 ./hdblcm --components=epmmds --action=install
 ```
-#### Error ####
-The GetServerInfo URL returns the following error when the component is not installed. 
-URL: https://<hana-server:port>/sap/bc/ina/service/v2/GetServerInfo 
-
-    {"Messages":[{"Number":42001,"Type":2,"Text":"InformationAccess Service GetServerInfo is not available. Install EPM."}]}
     
 #### Documentation ####
 * [System Requirements and Technical Prerequisites](https://help.sap.com/doc/00f68c2e08b941f081002fd3691d86a7/release/en-US/11b4e5ff76eb4747bc255d7037be1f01.html) - SAP Analytics Cloud
@@ -112,10 +107,23 @@ To connect to the InA service we need the INA_ROLE role. Any user could be used 
 CREATE USER ina_user PASSWORD ****;
 CALL GRANT_ACTIVATED_ROLE('sap.bc.ina.service.v2.userRole::INA_USER','INA_USER');
 ``` 
-To access specific information views, we need to grant this user SELECT privileges on the views in the _SYS_BIC schema.
+To access specific information views, we need to grant this user SELECT privileges on the views:
 ```	
 GRANT SELECT ON "_SYS_BIC"."MY_USER/MY_VIEW" to "INA_USER"
 ```
+
+Verify connectivity with GetServerInfo:
+
+    https://myhost.lab.cloud.sap:4390/sap/bc/ina/service/v2/GetServerInfo
+   
+Verify connectivity with GetResponse:
+    
+    https://myhost.lab.cloud.sap:4390/sap/bc/ina/service/v2/GetResponse?Request={%22Metadata%22:{%22Expand%22:[%22Cubes%22]}} 
+
+#### Error ####
+The GetServerInfo URL returns the following error when the component is not installed. 
+
+    {"Messages":[{"Number":42001,"Type":2,"Text":"InformationAccess Service GetServerInfo is not available. Install EPM."}]}
 
 #### Video Tutorial ####
 [![3. User with INA_ROLE (XS)](https://img.youtube.com/vi/CZUHyZA5pkQ/0.jpg)](https://youtu.be/CZUHyZA5pkQ "[2019.05] SAP Cloud Analytics Live Connections: 3. User with INA_ROLE (XS) - SAP Digital Enablement")
