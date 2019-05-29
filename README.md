@@ -184,7 +184,10 @@ If CORS has not been configured for the InA service, the following error is retu
 ### 5. HTTP Server Session Timeout (XS) ###
 Default value for the HTTP Server (XS Engine) session timeout parameter is 900 seconds. SAC documentation recommends 12 hours. 
 ```
-ALTER SYSTEM ALTER CONFIGURATION ('xsengine.ini', '<NAME OF THE TENANT DATABASE>') SET('httpserver', 'sessiontimeout') ='43200' WITH RECONFIGURE;
+## execute as INI ADMIN on SYSTEMDB
+ALTER SYSTEM ALTER CONFIGURATION ('xsengine.ini', 'database', '<name tenant database') 
+SET ('httpserver', 'sessiontimeout') ='43200' 
+WITH RECONFIGURE;
 ```
 #### Video Tutorial ####
 [![5. HTTP Server Session Timeout](https://img.youtube.com/vi/p8mv705d1iM/0.jpg)](https://youtu.be/p8mv705d1iM "[2019.05] SAP Cloud Analytics Live Connections: 5. HTTP Server Timeout - SAP Digital Enablement")
