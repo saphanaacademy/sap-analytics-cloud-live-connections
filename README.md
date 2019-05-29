@@ -144,7 +144,7 @@ You can access the tenant database XS artifact administration tool using the URL
 
 To connect to tool we need the RuntimeConfAdministrator role. Any user could be used but a least-privileged user approach is generally recommended. In the code example below we grant the role to the user created in step 2 above.
 ```	
-CALL GRANT_ACTIVATED_ROLE('sap.hana.xs.admin::RuntimeConfAdministrator','XS_ADMIN');
+CALL GRANT_ACTIVATED_ROLE('sap.hana.xs.admin.roles::RuntimeConfAdministrator','XS_ADMIN');
 ``` 
 
 Edit the CORS settings for the following package:
